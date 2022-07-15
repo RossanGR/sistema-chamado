@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import '../SignIn/style.css';
 import Logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
+import {AuthContext} from '../../contexts/auth'
 
 
 
@@ -9,10 +10,13 @@ function SignUp() {
   const [nome,setNome] = useState('');
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
+  const {signUp} = useContext(AuthContext);
 
   function handleSubmit (e){
     e.preventDefault();
-    alert('Cliclou');
+    if(nome !== '' && password !== '' && nome !== ''){
+      signUp(email,password,nome);
+    }
   }
 
     return (
